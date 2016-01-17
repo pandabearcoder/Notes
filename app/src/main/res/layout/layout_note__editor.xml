@@ -1,0 +1,73 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:background="@color/bg_main"
+    tools:context="elec.dev.notes.act_note_editor">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/edit_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/header_height"
+        android:minHeight="?attr/actionBarSize"
+        android:elevation="4dp"
+        android:background="@color/colorPrimary"
+        android:theme="@style/AppTheme.AppBarOverlay"
+        app:popupTheme="@style/AppTheme.PopupOverlay" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:focusableInTouchMode="true">
+
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/lNameLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="50dp">
+
+                <EditText
+                    android:id="@+id/txt_titleView_edit"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/note_title"
+                    android:textColor="@color/colorTextWhite"
+                    android:inputType="textCapWords"
+                    android:textSize="20sp"
+                    android:paddingStart="0dp"
+                    android:paddingLeft="0dp"
+                    android:paddingRight="0dp"
+                    android:layout_marginBottom="0.2dp"
+                    android:layout_gravity="bottom|start"
+                    />
+            </android.support.design.widget.TextInputLayout>
+        </LinearLayout>
+
+    </android.support.v7.widget.Toolbar>
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <EditText
+            android:id="@+id/txt_contentView_edit"
+            android:inputType="textMultiLine"
+            android:scrollHorizontally="false"
+            android:padding="14dp"
+            android:paddingStart="16dp"
+            android:paddingLeft="16dp"
+            android:paddingRight="16dp"
+            android:gravity="start|top"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:hint="@string/note_content"
+            android:textColorHint="@color/colorSubText"
+            android:textColor="@color/colorPrimaryText"
+            android:textSize="16sp" />
+    </LinearLayout>
+
+</LinearLayout>
