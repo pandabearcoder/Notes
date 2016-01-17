@@ -4,9 +4,9 @@
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
     <color name="colorPrimaryText">#FF535353</color>
-    <color name="colorTextWhite">@color/bg_noteItem</color>
     <color name="colorSubText">#FF727272</color>
     <color name="bg_main">#FFeeeeee</color>
-    <color name="bg_noteItem">#FFFFFFFF</color>
+    <color name="white">#FFFFFF</color>
+    <color name="bg_noteItem">@color/white</color>
     <color name="bg_noteTitle">#FFf3f3f3</color>
 </resources>
