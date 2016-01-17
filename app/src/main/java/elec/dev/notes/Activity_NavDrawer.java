@@ -50,13 +50,6 @@ public class Activity_NavDrawer extends Fragment {
         return inflater.inflate(R.layout.fragment_navigation_drawer, container, false);
     }
 
-    @Override
-    public void onActivityCreated(Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
-
-        setUp(R.id.fragment_navdrawer, (DrawerLayout) getActivity().findViewById(R.id.DrawerLayout), (Toolbar) getActivity().findViewById(R.id.main_toolbar));
-    }
-
     public void setUp(int fragmentID, final DrawerLayout drawerLayout, Toolbar toolbar) {
         containerView = getActivity().findViewById(fragmentID);
         mDrawerLayout = drawerLayout;

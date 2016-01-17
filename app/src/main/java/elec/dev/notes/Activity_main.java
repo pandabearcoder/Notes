@@ -3,6 +3,7 @@ package elec.dev.notes;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
+import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -39,11 +40,14 @@ public class Activity_main extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.layout_main);
 
+        //Initialize toolbar and navigation drawer
         Toolbar appbar = (Toolbar) findViewById(R.id.main_toolbar);
         setSupportActionBar(appbar);
+        DrawerLayout drawerLayout = (DrawerLayout) findViewById(R.id.DrawerLayout);
+        Activity_NavDrawer navDrawer = (Activity_NavDrawer) getSupportFragmentManager().findFragmentById(R.id.fragment_navdrawer);
+        navDrawer.setUp(R.id.fragment_navdrawer,drawerLayout,appbar);
 
-        getSupportFragmentManager().findFragmentById(R.id.fragment_navdrawer);
-
+        //Initialize RecycleView and data
         note_details = noteModel.getAllNotes();
         adapter = new RecyAdapter(Activity_main.this, note_details);
         RecyclerView recyView = (RecyclerView) findViewById(R.id.scrollableView);

@@ -1,7 +1,6 @@
 package elec.dev.notes;
 
 import android.content.ContentValues;
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
@@ -30,8 +29,6 @@ public class Activity_NoteEditor extends AppCompatActivity {
 
     NoteModel noteModel;
 
-    Context context;
-
     int id;
 
     Calendar gc;
@@ -57,6 +54,7 @@ public class Activity_NoteEditor extends AppCompatActivity {
         titleView = (EditText) findViewById(R.id.txt_titleView_edit);
         contentView = (EditText) findViewById(R.id.txt_contentView_edit);
         appbar = (Toolbar) findViewById(R.id.edit_toolbar);
+
         //Set toolbar title to New Note if mode is new
         //then Set appbar as activity toolbar.
         if(mode.equals("new")) {
