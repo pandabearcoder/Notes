@@ -71,11 +71,11 @@ public class RecyAdapter extends RecyclerView.Adapter<CustomViewHolder> {
             note_content = noteList.noteContent;
             mode = "view";
 
-            Intent intent = new Intent(mContext, act_note_editor.class);
-            intent.putExtra(act_main.NOTE_ID,note_id);
-            intent.putExtra(act_main.NOTE_TITLE, note_title);
-            intent.putExtra(act_main.NOTE_CONTENT, note_content);
-            intent.putExtra(act_main.EDITOR_MODE, mode);
+            Intent intent = new Intent(mContext, Activity_NoteEditor.class);
+            intent.putExtra(Activity_main.NOTE_ID,note_id);
+            intent.putExtra(Activity_main.NOTE_TITLE, note_title);
+            intent.putExtra(Activity_main.NOTE_CONTENT, note_content);
+            intent.putExtra(Activity_main.EDITOR_MODE, mode);
             mContext.startActivity(intent);
         }
     };

@@ -3,16 +3,15 @@ package elec.dev.notes;
 import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
+import android.os.Bundle;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.Toast;
 
 import java.util.Calendar;
 import java.util.GregorianCalendar;
@@ -20,7 +19,7 @@ import java.util.GregorianCalendar;
 import elec.dev.notes.models.NoteModel;
 import elec.dev.notes.proj.data.DatabaseHelper;
 
-public class act_note_editor extends AppCompatActivity {
+public class Activity_NoteEditor extends AppCompatActivity {
 
     private String mode;
 
@@ -37,7 +36,7 @@ public class act_note_editor extends AppCompatActivity {
 
     Calendar gc;
 
-    public act_note_editor() {
+    public Activity_NoteEditor() {
         noteModel = new NoteModel(this);
         gc = new GregorianCalendar();
     }
@@ -49,10 +48,10 @@ public class act_note_editor extends AppCompatActivity {
 
         //Get EXTRA from Main Activity
         Intent intent = getIntent();
-        mode = intent.getStringExtra(act_main.EDITOR_MODE);
-        String title = intent.getStringExtra(act_main.NOTE_TITLE);
-        String content = intent.getStringExtra(act_main.NOTE_CONTENT);
-        id = intent.getIntExtra(act_main.NOTE_ID, 1);
+        mode = intent.getStringExtra(Activity_main.EDITOR_MODE);
+        String title = intent.getStringExtra(Activity_main.NOTE_TITLE);
+        String content = intent.getStringExtra(Activity_main.NOTE_CONTENT);
+        id = intent.getIntExtra(Activity_main.NOTE_ID, 1);
 
         //Get View IDs
         titleView = (EditText) findViewById(R.id.txt_titleView_edit);

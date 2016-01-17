@@ -5,7 +5,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:background="@color/bg_main"
-    tools:context="elec.dev.notes.act_note_editor">
+    tools:context=".Activity_NoteEditor">
 
     <android.support.v7.widget.Toolbar
         android:id="@+id/edit_toolbar"
