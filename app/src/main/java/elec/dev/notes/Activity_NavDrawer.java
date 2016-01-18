@@ -33,14 +33,8 @@ public class Activity_NavDrawer extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        if(savedInstanceState!=null) {
-            mFromSavedInstanceState = true;
-            mUserLearnedDrawer = readFromPreferences(getActivity(),KEY_LEARNED, true);
-        }
-        else {
-            mFromSavedInstanceState = false;
-            mUserLearnedDrawer = readFromPreferences(getActivity(),KEY_LEARNED, false);
-        }
+        mUserLearnedDrawer = readFromPreferences(getActivity(),KEY_LEARNED, false);
+        mFromSavedInstanceState = savedInstanceState != null;
     }
 
     @Override
