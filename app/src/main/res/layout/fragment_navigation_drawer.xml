@@ -25,4 +25,10 @@
     <include
         layout="@layout/navdrawer_action_settings" />
 
+    <include
+        layout="@layout/navdrawer_action_help" />
+
+    <include
+        layout="@layout/navdrawer_action_about" />
+
 </LinearLayout>
