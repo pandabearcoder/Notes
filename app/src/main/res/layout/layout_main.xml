@@ -40,7 +40,7 @@
             android:layout_height="wrap_content"
             android:layout_margin="16sp"
             android:layout_gravity="bottom|end"
-            android:src="@drawable/ic_action_new" />
+            android:src="@drawable/ic_note_add_white_24dp" />
     </android.support.design.widget.CoordinatorLayout>
 
     <fragment

@@ -11,7 +11,7 @@ import java.util.ArrayList;
 
 import elec.dev.notes.obj.NoteObj;
 
-public class RecyAdapter extends RecyclerView.Adapter<NoteViewHolder> {
+public class NoteAdapter extends RecyclerView.Adapter<NoteViewHolder> {
 
     private ArrayList<NoteObj> noteData;
     private Context mContext;
@@ -21,7 +21,7 @@ public class RecyAdapter extends RecyclerView.Adapter<NoteViewHolder> {
     String note_content;
     String mode;
 
-    public RecyAdapter(Context context, ArrayList<NoteObj> noteDataList) {
+    public NoteAdapter(Context context, ArrayList<NoteObj> noteDataList) {
         this.noteData = noteDataList;
         this.mContext = context;
     }

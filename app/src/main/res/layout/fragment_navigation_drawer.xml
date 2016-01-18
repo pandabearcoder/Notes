@@ -11,9 +11,14 @@
         layout="@layout/navdrawer_header" />
 
     <include
+        layout="@layout/navdrawer_notebook_head" />
 
+    <include
+        layout="@layout/navdrawer_action_new" />
+
+    <View
         android:layout_width="match_parent"
-        android:layout_height="48dp"
-        layout="@layout/navdrawer_menu" />
+        android:layout_height="1dp"
+        android:background="@android:color/darker_gray"/>
 
 </LinearLayout>

@@ -28,7 +28,7 @@ public class Activity_main extends AppCompatActivity {
     private String mode;
     private String title;
     private String content;
-    private RecyAdapter adapter;
+    private NoteAdapter adapter;
     ArrayList<NoteObj> note_details;
 
     public Activity_main() {
@@ -49,7 +49,7 @@ public class Activity_main extends AppCompatActivity {
 
         //Initialize RecycleView and data
         note_details = noteModel.getAllNotes();
-        adapter = new RecyAdapter(Activity_main.this, note_details);
+        adapter = new NoteAdapter(Activity_main.this, note_details);
         RecyclerView recyView = (RecyclerView) findViewById(R.id.scrollableView);
         recyView.setLayoutManager(new LinearLayoutManager(this));
         recyView.setAdapter(adapter);

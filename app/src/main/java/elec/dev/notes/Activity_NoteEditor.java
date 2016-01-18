@@ -41,7 +41,7 @@ public class Activity_NoteEditor extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.layout_note__editor);
+        setContentView(R.layout.layout_note_editor);
 
         //Get EXTRA from Main Activity
         Intent intent = getIntent();

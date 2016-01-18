@@ -8,6 +8,7 @@
     <string name="note_title">Title</string>
     <string name="note_content">What you want to note…</string>
 
+    <string name="action_new_notebook">Create new notebook</string>
     <string name="action_delete">Delete</string>
     <string name="action_save">Save</string>
     <string name="action_share">Share</string>
