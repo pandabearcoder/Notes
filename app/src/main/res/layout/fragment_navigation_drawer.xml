@@ -1,16 +1,19 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:background="@color/white"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".Activity_NavDrawer"
+    android:background="@color/white"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_marginStart="16dp"
-    android:layout_marginLeft="16dp"
+    android:clickable="true"
+    android:orientation="vertical">
 
-    tools:context=".Activity_NavDrawer">
+    <include
+        layout="@layout/navdrawer_header" />
 
-    <TextView
+    <include
+
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_height="48dp"
+        layout="@layout/navdrawer_menu" />
 
-</FrameLayout>
+</LinearLayout>

@@ -11,7 +11,7 @@ import java.util.ArrayList;
 
 import elec.dev.notes.obj.NoteObj;
 
-public class RecyAdapter extends RecyclerView.Adapter<CustomViewHolder> {
+public class RecyAdapter extends RecyclerView.Adapter<NoteViewHolder> {
 
     private ArrayList<NoteObj> noteData;
     private Context mContext;
@@ -27,15 +27,15 @@ public class RecyAdapter extends RecyclerView.Adapter<CustomViewHolder> {
     }
 
     @Override
-    public CustomViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
+    public NoteViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
         View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.layout_note_list, viewGroup, false);
 
-        CustomViewHolder viewHolder = new CustomViewHolder(view);
+        NoteViewHolder viewHolder = new NoteViewHolder(view);
         return viewHolder;
     }
 
     @Override
-    public void onBindViewHolder(CustomViewHolder customViewHolder, int i) {
+    public void onBindViewHolder(NoteViewHolder customViewHolder, int i) {
         NoteObj noteList = noteData.get(i);
 
         //Setting text view title
@@ -62,7 +62,7 @@ public class RecyAdapter extends RecyclerView.Adapter<CustomViewHolder> {
     View.OnClickListener clickListener = new View.OnClickListener() {
         @Override
         public void onClick(View view) {
-            CustomViewHolder holder = (CustomViewHolder) view.getTag();
+            NoteViewHolder holder = (NoteViewHolder) view.getTag();
             int position = holder.getLayoutPosition();
 
             NoteObj noteList = noteData.get(position);

@@ -7,6 +7,7 @@
     <color name="colorSubText">#FF727272</color>
     <color name="bg_main">#FFeeeeee</color>
     <color name="white">#FFFFFF</color>
+    <color name="black">#000000</color>
     <color name="bg_noteItem">@color/white</color>
     <color name="bg_noteTitle">#FFf3f3f3</color>
 </resources>

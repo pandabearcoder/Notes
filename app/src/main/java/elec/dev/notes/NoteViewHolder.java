@@ -6,14 +6,14 @@ import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-public class CustomViewHolder extends RecyclerView.ViewHolder {
+public class NoteViewHolder extends RecyclerView.ViewHolder {
     protected LinearLayout noteBoxView;
     protected TextView titleView;
     protected TextView contentView;
     protected TextView dateView;
     private final Context context;
 
-    public CustomViewHolder(View view) {
+    public NoteViewHolder(View view) {
         super(view);
         this.noteBoxView = (LinearLayout) view.findViewById(R.id.notebox);
         this.titleView = (TextView) view.findViewById(R.id.txt_titleView);
