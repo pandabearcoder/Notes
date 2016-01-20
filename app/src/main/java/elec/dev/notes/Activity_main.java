@@ -24,11 +24,11 @@ public class Activity_main extends AppCompatActivity {
     public final static String NOTE_TITLE = "elec.dev.notes.NOTE_TITLE";
     public final static String NOTE_CONTENT = "elec.dev.notes.NOTE_CONTENT";
 
+    private NoteAdapter adapter;
     private NoteModel noteModel;
     private String mode;
     private String title;
     private String content;
-    private NoteAdapter adapter;
     ArrayList<NoteObj> note_details;
 
     public Activity_main() {
@@ -54,6 +54,7 @@ public class Activity_main extends AppCompatActivity {
         recyView.setLayoutManager(new LinearLayoutManager(this));
         recyView.setAdapter(adapter);
 
+
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -70,8 +71,16 @@ public class Activity_main extends AppCompatActivity {
     }
 
     @Override
-    public void onResume() {
-        super.onResume();
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+    }
+
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+
+        note_details.clear();
+        note_details.addAll(noteModel.getAllNotes());
         adapter.notifyDataSetChanged();
     }
 

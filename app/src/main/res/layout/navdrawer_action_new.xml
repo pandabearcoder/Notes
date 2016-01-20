@@ -16,7 +16,7 @@
             android:layout_height="wrap_content"
             android:id="@+id/imageView"
             android:layout_gravity="center"
-            android:src="@drawable/ic_action_new"
+            android:src="@drawable/ic_add_black_24dp"
             android:tint="#000000"
             android:alpha="0.54" />
     </FrameLayout>
