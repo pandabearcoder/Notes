@@ -103,7 +103,12 @@ public class Activity_NoteEditor extends AppCompatActivity {
                 cv.put(DatabaseHelper.note_Title, titleView.getText().toString());
                 cv.put(DatabaseHelper.note_Content, contentView.getText().toString());
                 cv.put(DatabaseHelper.note_Date, time);
-                noteModel.addNote(cv);
+                if(mode.equals("new")) {
+                    noteModel.addNote(cv);
+                }
+                else if(mode.equals("edit")) {
+                    noteModel.updateNote(cv, id);
+                }
                 finish();
                 return true;
 

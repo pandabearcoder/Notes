@@ -52,12 +52,24 @@ public class NoteModel extends DatabaseHelper {
 
     public int deleteNote(int id) {
         SQLiteDatabase db = this.getWritableDatabase();
-        int result =  db.delete(NOTE_TABLE,note_ID+"=?",new String[]{ Integer.toString(id) });
+        int result =  db.delete(NOTE_TABLE, note_ID + "=?", new String[]{Integer.toString(id)});
         if(result>0) {
             Toast.makeText(context,"Note deleted!",Toast.LENGTH_SHORT).show();
         }
         else {
             Toast.makeText(context,"Oops.. Note not deleted",Toast.LENGTH_SHORT).show();
+        }
+        return result;
+    }
+
+    public int updateNote(ContentValues cv, int id) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        int result = db.update(NOTE_TABLE, cv, note_ID + "=?", new String[]{ Integer.toString(id) });
+        if(result>0) {
+            Toast.makeText(context,"Note updated!",Toast.LENGTH_SHORT).show();
+        }
+        else {
+            Toast.makeText(context,"Oops.. Note not updated",Toast.LENGTH_SHORT).show();
         }
         return result;
     }
