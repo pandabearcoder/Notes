@@ -29,8 +29,8 @@ public class Activity_NoteEditor extends AppCompatActivity {
 
     NoteModel noteModel;
 
-    int id;
-
+    int notebookID;
+    int noteID;
     Calendar gc;
 
     public Activity_NoteEditor() {
@@ -48,7 +48,8 @@ public class Activity_NoteEditor extends AppCompatActivity {
         mode = intent.getStringExtra(Activity_main.EDITOR_MODE);
         String title = intent.getStringExtra(Activity_main.NOTE_TITLE);
         String content = intent.getStringExtra(Activity_main.NOTE_CONTENT);
-        id = intent.getIntExtra(Activity_main.NOTE_ID, 1);
+        noteID = intent.getIntExtra(Activity_main.NOTE_ID, 1);
+        notebookID = intent.getIntExtra(Activity_main.NOTEBOOK_ID, 1);
 
         //Get View IDs
         titleView = (EditText) findViewById(R.id.txt_titleView_edit);
@@ -99,7 +100,7 @@ public class Activity_NoteEditor extends AppCompatActivity {
             case R.id.action_save:
                 ContentValues cv = new ContentValues();
                 String time = gc.getTime().toString();
-                cv.put(DatabaseHelper.note_nbID, "1");
+                cv.put(DatabaseHelper.note_nbID, notebookID);
                 cv.put(DatabaseHelper.note_Title, titleView.getText().toString());
                 cv.put(DatabaseHelper.note_Content, contentView.getText().toString());
                 cv.put(DatabaseHelper.note_Date, time);
@@ -107,13 +108,13 @@ public class Activity_NoteEditor extends AppCompatActivity {
                     noteModel.addNote(cv);
                 }
                 else if(mode.equals("edit")) {
-                    noteModel.updateNote(cv, id);
+                    noteModel.updateNote(cv, noteID);
                 }
                 finish();
                 return true;
 
             case R.id.action_delete:
-                int result = noteModel.deleteNote(id);
+                int result = noteModel.deleteNote(noteID);
                 if(result>0) {
                     finish();
                 }

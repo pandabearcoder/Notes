@@ -1,8 +1,5 @@
 package elec.dev.notes;
 
-
-import android.content.Context;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.DrawerLayout;
@@ -12,10 +9,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-public class Activity_NavDrawer extends Fragment {
+import elec.dev.notes.proj.data.Pref;
 
-    public static final String PREF_FILENAME = "uxPreference";
-    public static final String KEY_LEARNED = "user_learned_drawer";
+public class Activity_NavDrawer extends Fragment {
 
     private ActionBarDrawerToggle mDrawerToggle;
     private DrawerLayout mDrawerLayout;
@@ -33,7 +29,7 @@ public class Activity_NavDrawer extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        mUserLearnedDrawer = readFromPreferences(getActivity(),KEY_LEARNED, false);
+        mUserLearnedDrawer = Pref.readFromPreferences(getActivity(), Pref.KEY_LEARNED, false);
         mFromSavedInstanceState = savedInstanceState != null;
     }
 
@@ -55,7 +51,7 @@ public class Activity_NavDrawer extends Fragment {
 
                 if(!mUserLearnedDrawer) {
                     mUserLearnedDrawer = true;
-                    saveToPreferences(getActivity(), KEY_LEARNED, true);
+                    Pref.saveToPreferences(getActivity(), Pref.KEY_LEARNED, true);
                 }
                 getActivity().invalidateOptionsMenu();
             }
@@ -66,7 +62,7 @@ public class Activity_NavDrawer extends Fragment {
 
                 if(!mUserLearnedDrawer) {
                     mUserLearnedDrawer = true;
-                    saveToPreferences(getActivity(), KEY_LEARNED, true);
+                    Pref.saveToPreferences(getActivity(), Pref.KEY_LEARNED, true);
                 }
                 getActivity().invalidateOptionsMenu();
             }
@@ -83,17 +79,5 @@ public class Activity_NavDrawer extends Fragment {
                 mDrawerToggle.syncState();
             }
         });
-    }
-
-    public static void saveToPreferences(Context context, String prefName, Boolean prefValue) {
-        SharedPreferences sharedPref = context.getSharedPreferences(PREF_FILENAME,Context.MODE_PRIVATE);
-        SharedPreferences.Editor editor = sharedPref.edit();
-        editor.putBoolean(prefName, prefValue);
-        editor.apply();
-    }
-
-    public static Boolean readFromPreferences(Context context, String prefName, Boolean defaultValue) {
-        SharedPreferences sharedPref = context.getSharedPreferences(PREF_FILENAME,Context.MODE_PRIVATE);
-        return sharedPref.getBoolean(prefName, defaultValue);
     }
 }

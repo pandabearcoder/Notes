@@ -1,6 +1,5 @@
 package elec.dev.notes;
 
-import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.LinearLayout;
@@ -11,7 +10,6 @@ public class NoteViewHolder extends RecyclerView.ViewHolder {
     protected TextView titleView;
     protected TextView contentView;
     protected TextView dateView;
-    private final Context context;
 
     public NoteViewHolder(View view) {
         super(view);
@@ -19,6 +17,5 @@ public class NoteViewHolder extends RecyclerView.ViewHolder {
         this.titleView = (TextView) view.findViewById(R.id.txt_titleView);
         this.contentView = (TextView) view.findViewById(R.id.txt_contentView);
         this.dateView = (TextView) view.findViewById(R.id.txt_dateView);
-        context = view.getContext();
     }
 }

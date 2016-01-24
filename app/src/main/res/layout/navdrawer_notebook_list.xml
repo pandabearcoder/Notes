@@ -1,6 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:id="@+id/nav_list_cont"
+    android:layout_width="match_parent"
+    android:layout_height="48dp">
+
+    <FrameLayout
+        android:id="@+id/nav_list_icon"
+        android:layout_marginLeft="16dp"
+        android:layout_marginStart="16dp"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/imageView"
+            android:layout_gravity="center"
+            android:src="@drawable/ic_book_black_24dp"
+            android:tint="#000000"
+            android:alpha="0.54" />
+    </FrameLayout>
+
+    <TextView
+        android:id="@+id/nav_list_text"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="20dp"
+        android:layout_marginStart="20dp"
+        android:fontFamily="sans-serif-medium"
+        android:textSize="14sp"
+        android:textColor="@color/black"
+        android:text="@string/navItem_help"
+        android:gravity="center_vertical"
+        android:alpha="0.87"/>
 
 </LinearLayout>

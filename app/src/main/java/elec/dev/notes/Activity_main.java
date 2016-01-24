@@ -16,13 +16,17 @@ import java.util.ArrayList;
 
 import elec.dev.notes.models.NoteModel;
 import elec.dev.notes.obj.NoteObj;
+import elec.dev.notes.proj.data.Pref;
 
 public class Activity_main extends AppCompatActivity {
 
     public final static String EDITOR_MODE = "elec.dev.notes.MODE";
+    public final static String NOTEBOOK_ID = "elec.dev.notes.NOTEBOOK_ID";
     public final static String NOTE_ID = "elec.dev.notes.NOTE_ID";
     public final static String NOTE_TITLE = "elec.dev.notes.NOTE_TITLE";
     public final static String NOTE_CONTENT = "elec.dev.notes.NOTE_CONTENT";
+
+    public static int nb_id;
 
     private NoteAdapter adapter;
     private NoteModel noteModel;
@@ -40,6 +44,8 @@ public class Activity_main extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.layout_main);
 
+        nb_id = Pref.readFromPreferences(this, Pref.KEY_LAST_NOTEBOOK, 1);
+
         //Initialize toolbar and navigation drawer
         Toolbar appbar = (Toolbar) findViewById(R.id.main_toolbar);
         setSupportActionBar(appbar);
@@ -48,7 +54,7 @@ public class Activity_main extends AppCompatActivity {
         navDrawer.setUp(R.id.fragment_navdrawer,drawerLayout,appbar);
 
         //Initialize RecycleView and data
-        note_details = noteModel.getAllNotes();
+        note_details = noteModel.getAllNotes(nb_id);
         adapter = new NoteAdapter(Activity_main.this, note_details);
         RecyclerView recyView = (RecyclerView) findViewById(R.id.scrollableView);
         recyView.setLayoutManager(new LinearLayoutManager(this));
@@ -80,7 +86,7 @@ public class Activity_main extends AppCompatActivity {
         super.onRestart();
 
         note_details.clear();
-        note_details.addAll(noteModel.getAllNotes());
+        note_details.addAll(noteModel.getAllNotes(nb_id));
         adapter.notifyDataSetChanged();
     }
 

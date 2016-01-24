@@ -72,6 +72,7 @@ public class NoteAdapter extends RecyclerView.Adapter<NoteViewHolder> {
             mode = "view";
 
             Intent intent = new Intent(mContext, Activity_NoteEditor.class);
+            intent.putExtra(Activity_main.NOTEBOOK_ID,Activity_main.nb_id);
             intent.putExtra(Activity_main.NOTE_ID,note_id);
             intent.putExtra(Activity_main.NOTE_TITLE, note_title);
             intent.putExtra(Activity_main.NOTE_CONTENT, note_content);
