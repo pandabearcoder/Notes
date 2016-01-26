@@ -17,10 +17,11 @@ public class NotebookModel extends DatabaseHelper {
 
     public NotebookModel(Context context) {
         super(context);
+        this.context = context;
     }
 
-    public ArrayList<NotebookObj> getAllNotebooks(){
-        ArrayList<NotebookObj> list = new ArrayList<NotebookObj>();
+    public ArrayList<NotebookObj> getAllNotebooks() {
+        ArrayList<NotebookObj> list = new ArrayList<>();
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor cursor = db.rawQuery("SELECT * FROM "+NOTEBOOK_TABLE, null);
         if(cursor.moveToFirst()){
@@ -31,17 +32,20 @@ public class NotebookModel extends DatabaseHelper {
                 list.add(o);
             }while(cursor.moveToNext());
         }
+        cursor.close();
         return list;
     }
 
-    public boolean insert(ContentValues cv){
+    public boolean addNoteBook(String notebookName){
+        ContentValues cv = new ContentValues();
+        cv.put(nb_Name,notebookName);
         SQLiteDatabase db = this.getWritableDatabase();
         long result = db.insert(NOTEBOOK_TABLE, null, cv);
         if(result<0) {
             return false;
         }
         else {
-            Toast.makeText(context, "Added note with ID of " + result, Toast.LENGTH_SHORT).show();
+            Toast.makeText(context, "Notebook Added", Toast.LENGTH_SHORT).show();
             return true;
         }
     }

@@ -21,7 +21,7 @@ public class NoteModel extends DatabaseHelper {
     }
 
     public ArrayList<NoteObj> getAllNotes(int nbID) {
-        ArrayList<NoteObj> list = new ArrayList<NoteObj>();
+        ArrayList<NoteObj> list = new ArrayList<>();
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor cursor = db.rawQuery("SELECT * FROM "+NOTE_TABLE+ " WHERE " +note_nbID+"=" +nbID, null);
         if(cursor.moveToFirst()){
@@ -34,6 +34,7 @@ public class NoteModel extends DatabaseHelper {
                 list.add(o);
             }while(cursor.moveToNext());
         }
+        cursor.close();
         return list;
     }
 

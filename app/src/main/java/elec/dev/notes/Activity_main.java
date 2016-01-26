@@ -27,16 +27,20 @@ public class Activity_main extends AppCompatActivity {
     public final static String NOTE_CONTENT = "elec.dev.notes.NOTE_CONTENT";
 
     public static int nb_id;
+    public static String nb_name;
+    public static boolean hasChanged;
 
     private NoteAdapter adapter;
     private NoteModel noteModel;
     private String mode;
     private String title;
     private String content;
+    private Toolbar appbar;
     ArrayList<NoteObj> note_details;
 
     public Activity_main() {
         noteModel = new NoteModel(this);
+        hasChanged = false;
     }
 
     @Override
@@ -47,7 +51,7 @@ public class Activity_main extends AppCompatActivity {
         nb_id = Pref.readFromPreferences(this, Pref.KEY_LAST_NOTEBOOK, 1);
 
         //Initialize toolbar and navigation drawer
-        Toolbar appbar = (Toolbar) findViewById(R.id.main_toolbar);
+        appbar = (Toolbar) findViewById(R.id.main_toolbar);
         setSupportActionBar(appbar);
         DrawerLayout drawerLayout = (DrawerLayout) findViewById(R.id.DrawerLayout);
         Activity_NavDrawer navDrawer = (Activity_NavDrawer) getSupportFragmentManager().findFragmentById(R.id.fragment_navdrawer);
@@ -77,17 +81,27 @@ public class Activity_main extends AppCompatActivity {
     }
 
     @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-    }
-
-    @Override
     protected void onRestart() {
         super.onRestart();
 
-        note_details.clear();
-        note_details.addAll(noteModel.getAllNotes(nb_id));
-        adapter.notifyDataSetChanged();
+        if(hasChanged) {
+            appbar.setTitle(nb_name);
+            note_details.clear();
+            note_details.addAll(noteModel.getAllNotes(nb_id));
+            adapter.notifyDataSetChanged();
+        }
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        if(hasChanged) {
+            appbar.setTitle(nb_name);
+            note_details.clear();
+            note_details.addAll(noteModel.getAllNotes(nb_id));
+            adapter.notifyDataSetChanged();
+        }
     }
 
     @Override
@@ -100,6 +114,7 @@ public class Activity_main extends AppCompatActivity {
     //Custom Functions
     public void startEditor() {
         Intent intent = new Intent(this, Activity_NoteEditor.class);
+        intent.putExtra(NOTEBOOK_ID,nb_id);
         intent.putExtra(NOTE_TITLE, title);
         intent.putExtra(NOTE_CONTENT, content);
         intent.putExtra(EDITOR_MODE, mode);

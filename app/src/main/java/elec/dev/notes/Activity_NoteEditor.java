@@ -110,12 +110,14 @@ public class Activity_NoteEditor extends AppCompatActivity {
                 else if(mode.equals("edit")) {
                     noteModel.updateNote(cv, noteID);
                 }
+                Activity_main.hasChanged = true;
                 finish();
                 return true;
 
             case R.id.action_delete:
                 int result = noteModel.deleteNote(noteID);
                 if(result>0) {
+                    Activity_main.hasChanged = true;
                     finish();
                 }
                 return true;

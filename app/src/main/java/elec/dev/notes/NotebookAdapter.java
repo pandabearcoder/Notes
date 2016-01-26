@@ -10,9 +10,6 @@ import java.util.ArrayList;
 
 import elec.dev.notes.obj.NotebookObj;
 
-/**
- * Created by sly on 1/24/16.
- */
 public class NotebookAdapter extends RecyclerView.Adapter<NotebookViewHolder> {
 
     private ArrayList<NotebookObj> notebookData;
@@ -56,13 +53,16 @@ public class NotebookAdapter extends RecyclerView.Adapter<NotebookViewHolder> {
     View.OnClickListener clickListener = new View.OnClickListener() {
         @Override
         public void onClick(View view) {
-            NoteViewHolder holder = (NoteViewHolder) view.getTag();
+            NotebookViewHolder holder = (NotebookViewHolder) view.getTag();
             int position = holder.getLayoutPosition();
 
             NotebookObj notebookList = notebookData.get(position);
             notebook_id = notebookList.nbID;
             notebook_name = notebookList.nbName;
             Activity_main.nb_id = notebook_id;
+            Activity_main.nb_name = notebook_name;
+
+            Activity_main.hasChanged = true;
         }
     };
 }

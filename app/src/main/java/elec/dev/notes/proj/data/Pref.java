@@ -3,9 +3,6 @@ package elec.dev.notes.proj.data;
 import android.content.Context;
 import android.content.SharedPreferences;
 
-/**
- * Created by sly on 1/24/16.
- */
 public class Pref {
 
     public static final String PREF_FILENAME = "uxPreference";

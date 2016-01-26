@@ -8,7 +8,6 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-
         <activity
             android:name=".Activity_main"
             android:label="@string/app_name"
@@ -19,16 +18,20 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <activity
             android:name=".Activity_NoteEditor"
-            android:parentActivityName=".Activity_main"
             android:label="@string/app_name"
+            android:parentActivityName=".Activity_main"
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".Activity_main" />
-            ></activity>
+            >
+        </activity>
+        <activity
+            android:name=".dialogs.Dialog_new_notebook"
+            android:label="@string/title_activity_dialog_new_notebook"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>

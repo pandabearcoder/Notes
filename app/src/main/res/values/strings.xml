@@ -8,7 +8,6 @@
     <string name="note_title">Title</string>
     <string name="note_content">What you want to note…</string>
 
-    <string name="action_new_notebook">Create new notebook</string>
     <string name="action_delete">Delete</string>
     <string name="action_save">Save</string>
     <string name="action_share">Share</string>
@@ -21,4 +20,11 @@
     <string name="navItem_help">Help</string>
 
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_activity_dialog_new_notebook">Dialog_new_notebook</string>
+
+    //dialogs
+    <string name="action_yes">Yes</string>
+    <string name="action_no">No</string>
+    <string name="action_cancel">Cancel</string>
+    <string name="action_new_notebook">Create notebook</string>
 </resources>
