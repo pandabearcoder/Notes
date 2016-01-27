@@ -36,6 +36,18 @@ public class NotebookModel extends DatabaseHelper {
         return list;
     }
 
+    public String getNotebookName(int id) {
+        String notebook_name = "";
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery("SELECT "+nb_Name+" FROM "+NOTEBOOK_TABLE+ " WHERE "+nb_ID+"="+id, null);
+        if(cursor.moveToFirst()){
+            do{
+                notebook_name = cursor.getString(cursor.getColumnIndex(nb_Name));
+            }while(cursor.moveToNext());
+        }
+        return  notebook_name;
+    }
+
     public boolean addNoteBook(String notebookName){
         ContentValues cv = new ContentValues();
         cv.put(nb_Name,notebookName);
@@ -50,9 +62,31 @@ public class NotebookModel extends DatabaseHelper {
         }
     }
 
-    public int delete(int id){
+    public boolean updateNotebook(int id, String notebook_name) {
+        ContentValues cv = new ContentValues();
+        cv.put(nb_Name,notebook_name);
+        SQLiteDatabase db = this.getWritableDatabase();
+        int result = db.update(NOTEBOOK_TABLE, cv, nb_ID + "=?", new String[]{Integer.toString(id)});
+        if(result>0) {
+            Toast.makeText(context,"Notebook updated!",Toast.LENGTH_SHORT).show();
+            return true;
+        }
+        else {
+            Toast.makeText(context,"Oops.. Note not updated",Toast.LENGTH_SHORT).show();
+            return false;
+        }
+    }
+
+    public int deleteNotebook(int id){
         SQLiteDatabase db = this.getWritableDatabase();
         db.delete(NOTE_TABLE,note_nbID+"=?",new String[]{ Integer.toString(id) });
-        return db.delete(NOTEBOOK_TABLE,nb_ID+"=?",new String[]{ Integer.toString(id) });
+        int result = db.delete(NOTEBOOK_TABLE,nb_ID+"=?",new String[]{ Integer.toString(id) });
+        if(result>0) {
+            Toast.makeText(context,"Notebook deleted!",Toast.LENGTH_SHORT).show();
+        }
+        else {
+            Toast.makeText(context,"Oops.. Notebook not deleted",Toast.LENGTH_SHORT).show();
+        }
+        return result;
     }
 }

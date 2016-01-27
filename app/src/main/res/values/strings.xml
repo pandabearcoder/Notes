@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Notes</string>
+    <string name="app_name">Notebook</string>
     <string name="ipsum">Text</string>
 
     <string name="drawer_open">Open</string>
@@ -12,6 +12,7 @@
     <string name="action_save">Save</string>
     <string name="action_share">Share</string>
     <string name="action_attach">Attach</string>
+    <string name="action_update">Update</string>
     <string name="action_search">Search</string>
     <string name="action_settings">Settings</string>
 
@@ -27,4 +28,6 @@
     <string name="action_no">No</string>
     <string name="action_cancel">Cancel</string>
     <string name="action_new_notebook">Create notebook</string>
+    <string name="action_edit_notebook">Save changes</string>
+    <string name="title_activity_dialog_edit_notebook">Dialog_edit_notebook</string>
 </resources>

@@ -31,6 +31,10 @@
         <activity
             android:name=".dialogs.Dialog_new_notebook"
             android:label="@string/title_activity_dialog_new_notebook"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".dialogs.Dialog_edit_notebook"
+            android:label="@string/title_activity_dialog_edit_notebook"
             android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 

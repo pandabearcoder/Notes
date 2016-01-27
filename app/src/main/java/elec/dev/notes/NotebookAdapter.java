@@ -8,10 +8,12 @@ import android.view.ViewGroup;
 
 import java.util.ArrayList;
 
+import elec.dev.notes.models.NoteModel;
 import elec.dev.notes.obj.NotebookObj;
 
 public class NotebookAdapter extends RecyclerView.Adapter<NotebookViewHolder> {
 
+    private NoteModel noteModel;
     private ArrayList<NotebookObj> notebookData;
     private Context mContext;
 
@@ -21,6 +23,7 @@ public class NotebookAdapter extends RecyclerView.Adapter<NotebookViewHolder> {
     public NotebookAdapter(Context context, ArrayList<NotebookObj> notebookDataList) {
         this.notebookData = notebookDataList;
         this.mContext = context;
+        noteModel = new NoteModel(context);
     }
 
     @Override
@@ -63,6 +66,10 @@ public class NotebookAdapter extends RecyclerView.Adapter<NotebookViewHolder> {
             Activity_main.nb_name = notebook_name;
 
             Activity_main.hasChanged = true;
+            Activity_main.appbar.setTitle(notebook_name);
+            Activity_main.note_details.clear();
+            Activity_main.note_details.addAll(noteModel.getAllNotes(notebook_id));
+            Activity_main.adapter.notifyDataSetChanged();
         }
     };
 }

@@ -9,27 +9,29 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import elec.dev.notes.Activity_NavDrawer;
+import elec.dev.notes.Activity_main;
 import elec.dev.notes.R;
 import elec.dev.notes.models.NotebookModel;
 
-public class Dialog_new_notebook extends DialogFragment implements View.OnClickListener {
+public class Dialog_edit_notebook extends DialogFragment implements View.OnClickListener {
 
-    private TextView cancel, create;
+    private TextView cancel, update;
     private EditText txt_nbName;
     NotebookModel mNBModel;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.dialog_new_notebook,null);
+
+        View view = inflater.inflate(R.layout.dialog_edit_notebook,null);
 
         mNBModel = new NotebookModel(getContext());
 
-        txt_nbName = (EditText) view.findViewById(R.id.txt_new_notebook);
+        txt_nbName = (EditText) view.findViewById(R.id.txt_edit_notebook);
 
         cancel = (TextView) view.findViewById(R.id.lbl_action_cancel);
-        create = (TextView) view.findViewById(R.id.lbl_action_create);
+        update = (TextView) view.findViewById(R.id.lbl_action_update);
         cancel.setOnClickListener(this);
-        create.setOnClickListener(this);
+        update.setOnClickListener(this);
 
         setCancelable(false);
         return view;
@@ -41,16 +43,18 @@ public class Dialog_new_notebook extends DialogFragment implements View.OnClickL
             cancel.setBackgroundColor(0x1A000000);
             dismiss();
         }
-        else if(view.getId()==R.id.lbl_action_create) {
-            create.setBackgroundColor(0x1A000000);
+        else if(view.getId()==R.id.lbl_action_update) {
+            update.setBackgroundColor(0x1A000000);
             if(!txt_nbName.getText().toString().trim().equals("")) {
-                if(mNBModel.addNoteBook(txt_nbName.getText().toString())) {
+                if(mNBModel.updateNotebook(Activity_main.nb_id,txt_nbName.getText().toString())) {
                     Activity_NavDrawer.notebook_details.clear();
                     Activity_NavDrawer.notebook_details.addAll(mNBModel.getAllNotebooks());
                     Activity_NavDrawer.adapter.notifyDataSetChanged();
+                    Activity_main.appbar.setTitle(txt_nbName.getText().toString());
                     dismiss();
                 }
             }
         }
     }
+
 }

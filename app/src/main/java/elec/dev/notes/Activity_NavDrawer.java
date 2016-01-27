@@ -27,9 +27,11 @@ public class Activity_NavDrawer extends Fragment {
     private View containerView;
     private Boolean mUserLearnedDrawer;
     private Boolean mFromSavedInstanceState;
-    private NotebookAdapter adapter;
     private NotebookModel notebookModel;
-    private ArrayList<NotebookObj> notebook_details;
+    public static ArrayList<NotebookObj> notebook_details;
+    public static NotebookAdapter adapter;
+
+    Activity_main activityMain;
 
     public Activity_NavDrawer() {
 
@@ -46,9 +48,10 @@ public class Activity_NavDrawer extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
 
         View view = inflater.inflate(R.layout.fragment_navigation_drawer, container, false);
+
+        activityMain = new Activity_main();
 
         RecyclerView mRecycleView = (RecyclerView) view.findViewById(R.id.notebookView);
         LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
@@ -124,7 +127,7 @@ public class Activity_NavDrawer extends Fragment {
 
     public void showCreateNotebookDialog() {
         FragmentManager manager = getFragmentManager();
-        Dialog_new_notebook dialog = new Dialog_new_notebook();
-        dialog.show(manager, "create");
+        Dialog_new_notebook create_dialog = new Dialog_new_notebook();
+        create_dialog.show(manager, "create");
     }
 }

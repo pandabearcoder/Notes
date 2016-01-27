@@ -7,7 +7,7 @@ public class Pref {
 
     public static final String PREF_FILENAME = "uxPreference";
     public static final String KEY_LEARNED = "user_learned_drawer";
-    public static final String KEY_LAST_NOTEBOOK = "last_used_notebook";
+    public static final String KEY_LAST_NOTEBOOK_ID = "last_used_notebook_id";
 
     public static void saveToPreferences(Context context, String prefName, Boolean prefValue) {
         SharedPreferences sharedPref = context.getSharedPreferences(Pref.PREF_FILENAME,Context.MODE_PRIVATE);
