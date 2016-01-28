@@ -23,7 +23,7 @@ import elec.dev.notes.proj.data.Pref;
 public class Activity_NavDrawer extends Fragment {
 
     private ActionBarDrawerToggle mDrawerToggle;
-    private DrawerLayout mDrawerLayout;
+    public static DrawerLayout mDrawerLayout;
     private View containerView;
     private Boolean mUserLearnedDrawer;
     private Boolean mFromSavedInstanceState;
@@ -50,6 +50,8 @@ public class Activity_NavDrawer extends Fragment {
                              Bundle savedInstanceState) {
 
         View view = inflater.inflate(R.layout.fragment_navigation_drawer, container, false);
+
+        mDrawerLayout = (DrawerLayout) getActivity().findViewById(R.id.DrawerLayout);
 
         activityMain = new Activity_main();
 
@@ -129,5 +131,9 @@ public class Activity_NavDrawer extends Fragment {
         FragmentManager manager = getFragmentManager();
         Dialog_new_notebook create_dialog = new Dialog_new_notebook();
         create_dialog.show(manager, "create");
+    }
+
+    public static void closeDrawer() {
+        mDrawerLayout.closeDrawers();
     }
 }

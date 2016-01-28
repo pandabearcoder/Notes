@@ -1,6 +1,7 @@
 package elec.dev.notes;
 
 import android.content.Context;
+import android.support.v4.widget.DrawerLayout;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,14 +16,14 @@ public class NotebookAdapter extends RecyclerView.Adapter<NotebookViewHolder> {
 
     private NoteModel noteModel;
     private ArrayList<NotebookObj> notebookData;
-    private Context mContext;
 
     int notebook_id;
     String notebook_name;
 
+    DrawerLayout drawerLayout;
+
     public NotebookAdapter(Context context, ArrayList<NotebookObj> notebookDataList) {
         this.notebookData = notebookDataList;
-        this.mContext = context;
         noteModel = new NoteModel(context);
     }
 
@@ -65,11 +66,15 @@ public class NotebookAdapter extends RecyclerView.Adapter<NotebookViewHolder> {
             Activity_main.nb_id = notebook_id;
             Activity_main.nb_name = notebook_name;
 
-            Activity_main.hasChanged = true;
             Activity_main.appbar.setTitle(notebook_name);
             Activity_main.note_details.clear();
             Activity_main.note_details.addAll(noteModel.getAllNotes(notebook_id));
             Activity_main.adapter.notifyDataSetChanged();
+
+            Activity_main.empty_notebook = false;
+            Activity_main.fab.setVisibility(View.VISIBLE);
+
+            Activity_NavDrawer.closeDrawer();
         }
     };
 }

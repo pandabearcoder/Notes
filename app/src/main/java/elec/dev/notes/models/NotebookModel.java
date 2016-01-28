@@ -41,11 +41,31 @@ public class NotebookModel extends DatabaseHelper {
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor cursor = db.rawQuery("SELECT "+nb_Name+" FROM "+NOTEBOOK_TABLE+ " WHERE "+nb_ID+"="+id, null);
         if(cursor.moveToFirst()){
-            do{
+            do {
                 notebook_name = cursor.getString(cursor.getColumnIndex(nb_Name));
-            }while(cursor.moveToNext());
+            }
+            while(cursor.moveToNext());
         }
+        else {
+            notebook_name = "Notebook";
+        }
+        cursor.close();
         return  notebook_name;
+    }
+
+    public int getAvailableNotebook() {
+        int notebook_id = 0;
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery("SELECT "+nb_ID+" FROM "+NOTEBOOK_TABLE, null);
+        if(cursor.moveToFirst()){
+            do {
+                notebook_id = cursor.getInt(cursor.getColumnIndex(nb_ID));
+            }
+            while(cursor.moveToNext());
+        }
+        cursor.close();
+
+        return notebook_id;
     }
 
     public boolean addNoteBook(String notebookName){

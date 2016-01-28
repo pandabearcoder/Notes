@@ -44,10 +44,14 @@ public class Activity_main extends AppCompatActivity {
     public static Toolbar appbar;
     public static ArrayList<NoteObj> note_details;
 
+    public static Boolean empty_notebook;
+    int availableNotebook;
+
+    public static FloatingActionButton fab;
+
     public Activity_main() {
         noteModel = new NoteModel(this);
         notebookModel = new NotebookModel(this);
-        hasChanged = false;
     }
 
     @Override
@@ -55,17 +59,22 @@ public class Activity_main extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.layout_main);
 
-        nb_id = Pref.readFromPreferences(this, Pref.KEY_LAST_NOTEBOOK_ID, 1);
+        fab = (FloatingActionButton) findViewById(R.id.fab);
 
-        String nbName = "";
-        nbName = notebookModel.getNotebookName(nb_id);
-        if(nbName.equals("")) {
-            nb_name = "Notebook";
+        availableNotebook = notebookModel.getAvailableNotebook();
+        if(availableNotebook > 0) {
+            empty_notebook = false;
+            nb_id = Pref.readFromPreferences(this, Pref.KEY_LAST_NOTEBOOK_ID, availableNotebook);
+            fab.setVisibility(View.VISIBLE);
         }
         else {
-            nb_name = nbName;
+            empty_notebook = true;
+            invalidateOptionsMenu();
+            fab.setVisibility(View.GONE);
         }
 
+
+        nb_id = Pref.readFromPreferences(this, Pref.KEY_LAST_NOTEBOOK_ID, 1);
         nb_name = notebookModel.getNotebookName(nb_id);
 
         //Initialize toolbar and navigation drawer
@@ -84,8 +93,6 @@ public class Activity_main extends AppCompatActivity {
         recyView.setLayoutManager(new LinearLayoutManager(this));
         recyView.setAdapter(adapter);
 
-
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -129,9 +136,33 @@ public class Activity_main extends AppCompatActivity {
     }
 
     @Override
+    public boolean onPrepareOptionsMenu(Menu menu) {
+
+        MenuItem menu_nb_updater = menu.findItem(R.id.action_update_notebook);
+        MenuItem menu_nb_remover = menu.findItem(R.id.action_delete_notebook);
+
+        if(empty_notebook) {
+            menu_nb_remover.setEnabled(false);
+            menu_nb_remover.getIcon().setAlpha(130);
+
+            menu_nb_updater.setEnabled(false);
+            menu_nb_updater.getIcon().setAlpha(130);
+        }
+        else {
+            menu_nb_remover.setEnabled(true);
+            menu_nb_remover.getIcon().setAlpha(255);
+
+            menu_nb_updater.setEnabled(true);
+            menu_nb_updater.getIcon().setAlpha(255);
+        }
+        return super.onPrepareOptionsMenu(menu);
+    }
+
+    @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.menu_main, menu);
+
         return true;
     }
 
@@ -142,10 +173,31 @@ public class Activity_main extends AppCompatActivity {
                 int result = notebookModel.deleteNotebook(nb_id);
                 if(result>0) {
                     hasChanged = true;
+
+                    //update notebook list
                     Activity_NavDrawer.notebook_details.clear();
                     Activity_NavDrawer.notebook_details.addAll(notebookModel.getAllNotebooks());
                     Activity_NavDrawer.adapter.notifyDataSetChanged();
-                    Activity_main.appbar.setTitle("Notebook");
+
+                    //get next available notebook
+                    availableNotebook = notebookModel.getAvailableNotebook();
+                    if(availableNotebook > 0) {
+                        nb_id = availableNotebook;
+                        fab.setVisibility(View.VISIBLE);
+                    }
+                    else {
+                        empty_notebook = true;
+                        invalidateOptionsMenu();
+                        fab.setVisibility(View.GONE);
+                    }
+                    nb_name = notebookModel.getNotebookName(nb_id);
+                    appbar.setTitle(nb_name);
+
+                    //update notes list
+                    note_details.clear();
+                    note_details.addAll(noteModel.getAllNotes(nb_id));
+                    adapter.notifyDataSetChanged();
+
                 }
                 return true;
 
